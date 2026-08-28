@@ -1,0 +1,12 @@
+.displayeados {
+    display: flex;
+}
+
+h2 {
+    width: 50%;
+}
+
+input {
+    width: 50%;
+    text-align: center;
+}

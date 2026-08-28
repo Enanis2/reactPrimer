@@ -1,0 +1,2 @@
+En la parte de API instalamos express, mysql2 y sequelize
+En la carpeta raiz (front) instalamos react, react-dom, react-routes-dom y axios

@@ -10,6 +10,7 @@ function Register() {
     const [mail, setMail] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
+    const [response, setResponse] = useState("")
 
     /* Esto sirve, pero dbeeria crear demasiadas funciones, asi que meto todo eso en el onChange y me olvido del problema
     const cambiarNombre = (event) => {
@@ -19,15 +20,16 @@ function Register() {
     */
 
     const crearUsuario = async () => {
-            const response = await axios.post('http://localhost:3000/usuarios/create', {
-                nombre: nombre,
-                apellido: apellido,
-                userName: userName,
-                edad: edad,
-                mail: mail,
-                password: password,
-                password2: password2
-            })
+        const userNuevo = await axios.post('http://localhost:3000/usuarios/create', {
+            nombre: nombre,
+            apellido: apellido,
+            userName: userName,
+            edad: edad,
+            mail: mail,
+            password: password,
+            password2: password2
+        })
+        setResponse(userNuevo.message)
     }
 
     return (<>
@@ -101,6 +103,7 @@ function Register() {
             }/>
         </div>
         <button onClick={crearUsuario}>CREAR</button>
+        <h2>{response}</h2>
     </>)
 }
 

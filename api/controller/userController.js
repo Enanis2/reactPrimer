@@ -1,4 +1,6 @@
 const { User } = require('../model/index.js');
+const Bcrypt = require('bcrypt')
+const saltos = 10
 
 const crearUsuario = async (req, res) => {
     try {
@@ -6,15 +8,16 @@ const crearUsuario = async (req, res) => {
         if ( !nombre || !apellido || !userName || !mail || !edad ) return res.status(400).json({ message: "Falta un dato"})
         if ( password != password2 ) return res.status(400).json({ message: "Las contraseñas no coinciden" })
         
+        hashedpassword = await Bcrypt.hash(password, saltos)
+
         const nuevoUser = await User.create({
             nombre: nombre,
             apellido: apellido,
             userName: userName,
             mail: mail,
             edad: edad,
-            password: password
+            password: hashedpassword
         })
-
         res.status(200).json(nuevoUser)
     } catch (error) {
         res.status(500).json({ message: error.message })

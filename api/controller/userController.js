@@ -1,5 +1,5 @@
 const { User } = require('../model/index.js');
-const Bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 const saltos = 10
 
 const crearUsuario = async (req, res) => {
@@ -8,7 +8,7 @@ const crearUsuario = async (req, res) => {
         if ( !nombre || !apellido || !userName || !mail || !edad ) return res.status(400).json({ message: "Falta un dato"})
         if ( password != password2 ) return res.status(400).json({ message: "Las contraseñas no coinciden" })
         
-        hashedpassword = await Bcrypt.hash(password, saltos)
+        hashedpassword = await bcrypt.hash(password, saltos)
 
         const nuevoUser = await User.create({
             nombre: nombre,
@@ -26,10 +26,16 @@ const crearUsuario = async (req, res) => {
 
 const buscarUsuario = async (req, res) => {
     try {
-        const { id } = req.body
-        if (!id) return res.status(400).json({message: "No hay id"})
+        const { userName, password } = req.body
+        if (!userName) return res.status(400).json({message: "No hay id"})
+            
+        const user = await User.findByPk(userName)
+        return res.json({
+            password: password,
+            user: user.password})
+        const coinciden = await bcrypt.compare(password, user.password)
 
-        const user = await User.findByPk(id)
+        if (!coinciden) return res.status(400).json({message: "No coinciden las passwords"})
         res.status(200).json(user)
     } catch (error) {
         res.status(500).json({message: error.message})

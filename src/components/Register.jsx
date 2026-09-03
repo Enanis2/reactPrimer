@@ -29,7 +29,8 @@ function Register() {
             password: password,
             password2: password2
         })
-        setResponse(userNuevo.message)
+        console.log(userNuevo)
+        setResponse(userNuevo.statusText)
     }
 
     return (<>
@@ -37,7 +38,6 @@ function Register() {
             <h2>Ingrese su nombre</h2>
             <input type="text" onChange={ //Cuando algo cambia
                 (event) => { //Ejecuto una arrow function que recibe el evento entero
-                            console.log(event.target.value);
                     setNombre(event.target.value) //Y uso solo la parte del valor que tiene
                 }
             }/>
@@ -46,8 +46,6 @@ function Register() {
             <h2>Ingrese su apellido</h2>
             <input type="text" onChange={ //Cuando algo cambia
                 (event) => { //Ejecuto una arrow function que recibe el evento entero
-                            console.log(event.target.value);
-
                     setApellido(event.target.value) //Y uso solo la parte del valor que tiene
                 }
             }/>
@@ -56,8 +54,6 @@ function Register() {
             <h2>Ingrese su userName</h2>
             <input type="text" onChange={ //Cuando algo cambia
                 (event) => { //Ejecuto una arrow function que recibe el evento entero
-                            console.log(event.target.value);
-
                     setUserName(event.target.value) //Y uso solo la parte del valor que tiene
                 }
             }/>
@@ -66,8 +62,6 @@ function Register() {
             <h2>Ingrese su edad</h2>
             <input type="number" onChange={ //Cuando algo cambia
                 (event) => { //Ejecuto una arrow function que recibe el evento entero
-                            console.log(event.target.value);
-
                     setEdad(event.target.value) //Y uso solo la parte del valor que tiene
                 }
             }/>
@@ -76,8 +70,6 @@ function Register() {
             <h2>Ingrese su mail</h2>
             <input type="email" onChange={ //Cuando algo cambia
                 (event) => { //Ejecuto una arrow function que recibe el evento entero
-                            console.log(event.target.value);
-
                     setMail(event.target.value) //Y uso solo la parte del valor que tiene
                 }
             }/>
@@ -86,8 +78,6 @@ function Register() {
             <h2>Ingrese su contraseña</h2>
             <input type="password" onChange={ //Cuando algo cambia
                 (event) => { //Ejecuto una arrow function que recibe el evento entero
-                            console.log(event.target.value);
-
                     setPassword(event.target.value) //Y uso solo la parte del valor que tiene
                 }
             }/>
@@ -96,8 +86,6 @@ function Register() {
             <h2>Ingrese su contraseña otra vez</h2>
             <input type="password" onChange={ //Cuando algo cambia
                 (event) => { //Ejecuto una arrow function que recibe el evento entero
-                            console.log(event.target.value);
-
                     setPassword2(event.target.value) //Y uso solo la parte del valor que tiene
                 }
             }/>

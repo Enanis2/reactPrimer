@@ -21,7 +21,10 @@ const User = sequelize.define(
                 isAlpha: true
             }
         },
-        userName: DataTypes.STRING,
+        userName: {
+            type: DataTypes.STRING,
+            unique: true
+        },
         mail: {
             type: DataTypes.STRING,
             validate: {

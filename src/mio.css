@@ -2,6 +2,15 @@
     display: flex;
 }
 
+.navBar {
+    background-color: aqua;
+    display: flex;
+}
+
+.navBar div {
+    text-align: center;
+}
+
 h2 {
     width: 50%;
 }
@@ -9,4 +18,17 @@ h2 {
 input {
     width: 50%;
     text-align: center;
+}
+
+nav {
+    display: flex;
+    align-content: space-around;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+nav div{
+    height: min-content;
+    width: 80%
 }

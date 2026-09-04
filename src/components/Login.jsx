@@ -10,11 +10,13 @@ function Login() {
 
     
     const logearse = async () => {
-        console.log(userName)
-        console.log(password)
-        const userLogged = await axios.post('http://localhost:3000/usuarios/buscar', { userName, password })
-        if (!userLogged) console.log('usuario inexistente')
-        else setUsuarioActivo(userName)
+        try {
+            const userLogged = await axios.post('http://localhost:3000/usuarios/buscar', { userName, password })
+            setUsuarioActivo(userLogged.userName)
+            setResponse(userLogged.data.userName)
+        } catch (error) {
+            setResponse(error.response.data.message)
+        }
     }
 
     return (<>
@@ -35,6 +37,7 @@ function Login() {
             }/>
         </div>
         <button onClick={logearse}>logearse</button>
+        <h2>Response: {response}</h2>
     </>)
 }
 

@@ -2,6 +2,16 @@
     display: flex;
 }
 
+.navBar {
+    background-color: aqua;
+    display: flex;
+}
+
+.navBar div {
+    width: 100%;
+    text-align: center;
+}
+
 h2 {
     width: 50%;
 }

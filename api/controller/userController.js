@@ -29,12 +29,10 @@ const buscarUsuario = async (req, res) => {
         const { userName, password } = req.body
         if (!userName) return res.status(400).json({message: "No hay id"})
             
-        const user = await User.findByPk(userName)
-        return res.json({
-            password: password,
-            user: user.password})
-        const coinciden = await bcrypt.compare(password, user.password)
+        const user = await User.findOne({ where: { userName: userName }});
+        if (!user) return res.status(400).json({message:'usuario inexistente'})
 
+        const coinciden = await bcrypt.compare(password, user.password)
         if (!coinciden) return res.status(400).json({message: "No coinciden las passwords"})
         res.status(200).json(user)
     } catch (error) {
@@ -42,7 +40,6 @@ const buscarUsuario = async (req, res) => {
         console.log({message: error.message})
     }
 }
- 
 module.exports = {
     crearUsuario,
     buscarUsuario

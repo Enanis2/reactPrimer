@@ -20,17 +20,21 @@ function Register() {
     */
 
     const crearUsuario = async () => {
-        const userNuevo = await axios.post('http://localhost:3000/usuarios/create', {
-            nombre: nombre,
-            apellido: apellido,
-            userName: userName,
-            edad: edad,
-            mail: mail,
-            password: password,
-            password2: password2
-        })
-        console.log(userNuevo)
-        setResponse(userNuevo.statusText)
+        try {
+            const userNuevo = await axios.post('http://localhost:3000/usuarios/create', {
+                nombre: nombre,
+                apellido: apellido,
+                userName: userName,
+                edad: edad,
+                mail: mail,
+                password: password,
+                password2: password2
+            })
+            setResponse(userNuevo.data.userName)
+        } catch (error) {
+            console.log({error})
+            setResponse(error.response.data.message)
+        }
     }
 
     return (<>

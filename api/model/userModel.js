@@ -1,5 +1,5 @@
 const { sequelize } = require("../config/bd.js") 
-const { DataTypes } = require("sequelize")
+const { DataTypes, TINYINT } = require("sequelize")
 
 const User = sequelize.define( 
     'User',
@@ -23,13 +23,19 @@ const User = sequelize.define(
         },
         userName: {
             type: DataTypes.STRING,
-            unique: true
+            unique: {
+                msg: 'Usuario existente'
+            }
         },
         mail: {
             type: DataTypes.STRING,
             validate: {
                 isEmail: true
             }
+        },
+        rol: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         },
         edad: {
             type: DataTypes.TINYINT.UNSIGNED,

@@ -11,11 +11,11 @@ const crearUsuario = async (req, res) => {
         hashedpassword = await bcrypt.hash(password, saltos)
 
         const nuevoUser = await User.create({
-            nombre: nombre,
-            apellido: apellido,
-            userName: userName,
-            mail: mail,
-            edad: edad,
+            nombre,
+            apellido,
+            userName,
+            mail,
+            edad,
             password: hashedpassword
         })
         res.status(200).json(nuevoUser)

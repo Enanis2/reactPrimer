@@ -14,6 +14,7 @@ function Login() {
             const userLogged = await axios.post('http://localhost:3000/usuarios/buscar', { userName, password })
             setUsuarioActivo(userLogged.userName)
             setResponse(userLogged.data.userName)
+            
         } catch (error) {
             setResponse(error.response.data.message)
         }
